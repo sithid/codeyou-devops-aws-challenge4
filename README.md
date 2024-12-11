@@ -36,7 +36,7 @@ Explain:
           - ./html:/usr/share/nginx/html  # Mounts a local folder to serve HTML files
 
     # this should be at the very bottom
-    network:
+    networks:
       default:
         driver: bridge
     ```
@@ -44,7 +44,7 @@ Explain:
 4. Start the `web` service:
 
     ```bash
-    docker composeup -d
+    docker compose up -d
     ```
 
 5. Verify the `web` service is running:
@@ -53,23 +53,29 @@ Explain:
     docker compose ps
     ```
 
-6. Open a browser and navigate to `http://localhost:8080`. The default NGINX page should appear.
+6. Open a browser and navigate to `http://localhost:8080`. You should get a response page from nginx, may be a 403 forbidden
 
 7. Add the `db` service to the `docker-compose.yml` file:
 
     ```yaml
     ...
+      web:
+        image: nginx:latest
+        ports:
+          - "8080:80"
+        volumes:
+          - ./html:/usr/share/nginx/html
 
       db:
         image: mysql:latest  # Official MySQL image
         environment:
-          MYSQL_ROOT_PASSWORD: supersecret    # Root password for MySQL
-          MYSQL_DATABASE: testdb              # Name of the default database
-          MYSQL_USER: mysqluser                    # Custom MySQL user
-          MYSQL_PASSWORD: notsosecretpassword        # Password for the MySQL user
+          MYSQL_ROOT_PASSWORD: supersecret # Root password
+          MYSQL_DATABASE: testdb # Name of the default database
+          MYSQL_USER: mysqluser # Custom MySQL user
+          MYSQL_PASSWORD: notsosecretpassword # Password for custom user
 
     # this should be at the very bottom
-    network:
+    networks:
       default:
         driver: bridge
     ```
@@ -97,9 +103,11 @@ Explain:
       web:
         image: nginx:latest  # Official NGINX image
         ports:
-          - "8080:80"        # Maps port 80 inside the container to port 8080 on the host
+          # Maps port 80 in the container to port 8080 on host
+          - "8080:80"
         volumes:
-          - ./html:/usr/share/nginx/html  # Mounts a local folder to serve HTML files
+           # Mounts a local folder to serve HTML files
+          - ./html:/usr/share/nginx/html 
         depends_on: 
           - db
 
@@ -153,7 +161,7 @@ Explain:
 
 2. Add an `index.html` file to the `html` directory:
 
-    ```html
+    ```
     <!DOCTYPE html>
     <html>
     <head>
@@ -186,7 +194,9 @@ Students will extend the knowledge from the walkthrough to:
 
 #### **Challenge Steps**
 
-1. **Setup:** Create a directory named `challenge` that we will use to initialize a Flask application.
+1. **Setup:**
+
+    Create a directory named `challenge` that we will use to initialize a Flask application.
 
 2. **Create the Flask app:**
 
@@ -243,17 +253,23 @@ Students will extend the knowledge from the walkthrough to:
 
     - Add a new service for Flask.
     - Configure the Flask service to:
-        - Build the image from the project directory. Here's a snippet to help with this, this should go in place of the `image: <image>:<tag>` line we usually use:
+        - Build the image from the project directory. Here's a sample snippet to help with this, this should go in place of the `image: <image>:<tag>` line we usually use:
             ```bash
+            # EXAMPLE
             my-new-service:
               build:
-                context: . # The location to look for the Dockerfile, can only be either current directory or descendant directory
-                dockerfile: Dockerfile # *optional: The name of the file containing Dockerfile instructions. Usually is `Dockerfile`, which it looks for by default
+                context: . 
+                # The location to look for the Dockerfile, 
+                # can only be either current directory or
+                # descendant directory
+                
+                dockerfile: Dockerfile 
+                # *optional: The name of the file containing 
+                # Dockerfile instructions. Default: `Dockerfile`
             ```
+            - **HINT**: You may have to change your `context: .`
         - Map port `5000` inside the container to port `5000` on the host.
-        - Use `depends_on` to ensure the database starts before the Flask app.
-        - Mount the directory containing the Flask app as a volume.
-            - **HINT**: The Flask app is usually stored in `/app`
+        - Use `depends_on` to ensure the ***database*** and the ***nginx web*** services starts before the Flask app.
         - Update the `db` service to expose its port for connections. 
             - **HINT**: Remember the MySQL runs on port 3306
 
