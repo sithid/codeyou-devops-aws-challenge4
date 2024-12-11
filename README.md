@@ -242,8 +242,8 @@ Students will extend the knowledge from the walkthrough to:
     - Copy over the `requirements.txt` file to `.` inside the container
     - There should be a `RUN` statement here that executes `pip install --no-cache-dir -r requirements.txt`
     - Copy over the current directory on the host over to `.` inside the container, i.e. after copying over and installing the dependencies in `requirements.txt` it should copy over everything else in the directory
-    - Should EXPOSE port 5000
-    - The CMD statement should be at the end and it should call `python app.py`
+    - Should expose port 5000
+    - The default command for the container should be at the end and it should be `python app.py`
 
 5. **Update the `docker-compose.yml`:**
 
