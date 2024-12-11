@@ -1,6 +1,6 @@
 ## Challenge 4 - Docker Compose
 
-### **Part 1: Walkthrough (25 minutes)**
+### **Part 1: Walkthrough**
 
 #### **Goal:**
 Students will create and run a simple `docker-compose.yml` file that sets up a multi-service application consisting of a web server (NGINX) and a database (MySQL).
