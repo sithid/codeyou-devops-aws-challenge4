@@ -1,4 +1,4 @@
-## Docker-Compose In-Class Walkthrough and Challenge Activity
+## Challenge 4 - Docker Compose
 
 ### **Part 1: Walkthrough**
 
