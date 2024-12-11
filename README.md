@@ -247,7 +247,7 @@ Students will extend the knowledge from the walkthrough to:
 
 5. **Update the `docker-compose.yml`:**
 
-    - Add a new service for Flask.
+    - Add a new service for Flask. Name it anything you want.
     - Configure the Flask service to:
         - Build the image from the project directory. Here's a sample snippet to help with this, this should go in place of the `image: <image>:<tag>` line we usually use:
             ```bash
