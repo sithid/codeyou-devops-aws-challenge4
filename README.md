@@ -21,6 +21,9 @@ Students will create and run a simple `docker-compose.yml` file that sets up a m
     version: '3.9'  # Compose file format version
 
     services:
+
+      # Equivalent of:
+      # docker run -d -p 8080:80 -v ./html:/usr/share/nginx/html nginx:latest
       web:
         image: nginx:latest  # Official NGINX image
         ports:
