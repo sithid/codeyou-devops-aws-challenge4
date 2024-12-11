@@ -196,7 +196,7 @@ Students will extend the knowledge from the walkthrough to:
 
 2. **Create the Flask app:**
 
-    Inside of the directory `challenge`, create a file named `app.py`:
+    Inside of the directory `challenge`, create a file named `app.py` with this content:
 
     ```python
     from flask import Flask, jsonify
@@ -240,7 +240,7 @@ Students will extend the knowledge from the walkthrough to:
     - Base image should be `python:3.9-slim`
     - The working directory should be `/app`
     - Copy over the `requirements.txt` file to `.` inside the container
-    - There should be a `RUN` statement here that executes `pip install --noc-cache-dir -r requirements.txt`
+    - There should be a `RUN` statement here that executes `pip install --no-cache-dir -r requirements.txt`
     - Copy over the current directory on the host over to `.` inside the container, i.e. after copying over and installing the dependencies in `requirements.txt` it should copy over everything else in the directory
     - Should EXPOSE port 5000
     - The CMD statement should be at the end and it should call `python app.py`
