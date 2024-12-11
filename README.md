@@ -9,14 +9,7 @@ Students will create and run a simple `docker-compose.yml` file that sets up a m
 
 ### **Step-by-Step Walkthrough**
 
-#### **Step 1: Introduction to `docker-compose.yml`**
-Explain:
-- A `docker-compose.yml` file allows you to define and run multi-container Docker applications.
-- Each service in the file represents a container.
-
----
-
-#### **Step 2: Writing the `docker-compose.yml`**
+#### **Step 1: Writing the `docker-compose.yml`**
 
 1. Clone and open this repo.
 
@@ -117,7 +110,7 @@ Explain:
     ```
 ---
 
-#### **Step 3: Running Docker-Compose**
+#### **Step 2: Running Docker-Compose**
 
 1. Start the services:
 
@@ -151,7 +144,7 @@ Explain:
 
 ---
 
-#### **Step 4: Customizing the Web Server**
+#### **Step 3: Customizing the Web Server**
 
 1. Create a directory named `html` in the project folder if it doesn't already exist:
 
