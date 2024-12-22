@@ -1,0 +1,36 @@
+services:
+
+  # Equivalent of:
+  # docker run -d -p 8080:80 -v ./html:/usr/share/nginx/html nginx:latest
+  web:
+    image: nginx:latest  # Official NGINX image
+    ports:
+      - "8080:80"        # Maps port 80 inside the container to port 8080 on the host
+    volumes:
+      - ./html:/usr/share/nginx/html  # Mounts a local folder to serve HTML files
+    depends_on:
+      - db
+
+  db:
+    image: mysql:latest  # Official MySQL image
+    environment:
+      MYSQL_ROOT_PASSWORD: dzw7$1 # Root password
+      MYSQL_DATABASE: db # Name of the default database
+      MYSQL_USER: jimmy # Custom MySQL user
+      MYSQL_PASSWORD: dzu7$2 # Password for custom user
+
+  python:
+    build:
+      context: ./python
+      dockerfile: Dockerfile
+
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+      - web
+
+# this should be at the very bottom
+networks:
+  default:
+    driver: bridge
