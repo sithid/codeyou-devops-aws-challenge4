@@ -30,7 +30,6 @@ services:
       - db
       - web
 
-# this should be at the very bottom
 networks:
   default:
     driver: bridge
